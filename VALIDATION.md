@@ -11,6 +11,8 @@
 | `go test -count=1 -cover ./...` | 通过；basics 100%、wordcount 100%、pipeline 96.3%、taskapi 95.9%、CLI run 82.2% |
 | `go test ./examples/basics -run '^$' -fuzz FuzzReverse -fuzztime 5s` | 通过，约 90 万次执行 |
 | `go build ./cmd/...` | 通过 |
+| 8 个 examples 命令与 wordcount CLI | 全部运行通过 |
+| wordcount 基准 | 运行通过；本机单次观察约 19.7 µs/op，不能用作跨环境性能结论 |
 | `scripts/check_docs.py` | 50 个页面全部在导航中，Markdown 本地链接与源码嵌入路径有效 |
 | `scripts/check_snippets.py` | 16 个独立完整 Go 代码块编译通过 |
 | `mkdocs build --strict` | 通过 |
@@ -23,7 +25,9 @@ Windows 沙箱的临时文件重命名曾阻止覆盖率输出，改为正常用
 
 ## 远端 CI 与 Pages
 
-工作流配置 Go 1.26/1.27 的 Linux 测试、race、短时 fuzz，以及文档和站点检查。Pages 只从仓库默认分支部署，部署结果以 GitHub Actions 记录为准。此处会在首次推送后补充实际结果，不以工作流存在替代成功执行证据。
+工作流已配置 Go 1.26/1.27 的 Linux 测试、race、短时 fuzz，以及文档和站点检查。Pages 只从仓库默认分支部署。
+
+本次工程保存在本地并已提交；远端因当前认证身份缺少目标仓库写权限而未能推送，因此远端 CI、Go 1.27 矩阵与 Pages 部署均尚未执行。后续获得仓库写权限，并在 Settings → Pages 将 Source 设为 GitHub Actions 后，再推送、检查 Actions 和实际网页。不能以工作流存在替代成功执行证据。
 
 ## 尚需专门环境的验证
 
