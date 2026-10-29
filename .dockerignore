@@ -1,0 +1,9 @@
+.git
+.venv
+.cache
+site
+docs
+bin
+data
+*.prof
+*.out

@@ -1,0 +1,120 @@
+site_name: Go 全栈学习笔记
+site_description: 从语言基础到并发、标准库、工程实践与运行时的中文 Go 教程
+site_author: Go 教程维护者
+site_url: https://01reportplus.github.io/golang-tutorial/
+repo_url: https://github.com/01reportplus/golang-tutorial
+repo_name: 01reportplus/golang-tutorial
+edit_uri: edit/main/docs/
+docs_dir: docs
+site_dir: site
+use_directory_urls: true
+theme:
+  name: material
+  language: zh
+  font: false
+  icon:
+    logo: material/language-go
+  palette:
+    - media: '(prefers-color-scheme: light)'
+      scheme: default
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/weather-night
+        name: 切换至深色模式
+    - media: '(prefers-color-scheme: dark)'
+      scheme: slate
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: 切换至浅色模式
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+plugins:
+  - search:
+      lang: zh
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.snippets:
+      base_path: ['.']
+      check_paths: true
+extra_css:
+  - assets/stylesheets/extra.css
+nav:
+  - 开始阅读:
+      - 教程首页: index.md
+      - 学习路线: start/roadmap.md
+      - 01 · 认识 Go: start/overview.md
+      - 02 · 安装与环境: start/install.md
+      - 03 · 第一个程序: start/first-program.md
+      - 04 · 工具与调试: start/tools.md
+  - 语言基础:
+      - 05 · 语法、作用域与初始化: language/syntax.md
+      - 06 · 类型、数值与转换: language/types.md
+      - 07 · 常量与运算符: language/constants.md
+      - 08 · 控制流与 range: language/control-flow.md
+      - 09 · 函数、闭包与 defer: language/functions.md
+      - 10 · 错误、panic 与 recover: language/errors.md
+      - 11 · 指针与值语义: language/pointers.md
+      - 12 · 字符串与 Unicode: language/strings.md
+      - 13 · 数组与切片: language/slices.md
+      - 14 · map 与集合: language/maps.md
+      - 15 · 结构体与方法: language/structs.md
+      - 16 · 接口与多态: language/interfaces.md
+      - 17 · 泛型与迭代器: language/generics.md
+  - 并发编程:
+      - 18 · goroutine 与生命周期: concurrency/goroutines.md
+      - 19 · channel 与 select: concurrency/channels.md
+      - 20 · 锁、同步与原子操作: concurrency/sync.md
+      - 21 · context 与超时: concurrency/context.md
+      - 22 · 并发模式与背压: concurrency/patterns.md
+      - 23 · 内存模型: concurrency/memory-model.md
+  - 标准库:
+      - 24 · I/O、文件与文件系统: stdlib/io-files.md
+      - 25 · JSON 与数据编码: stdlib/encoding.md
+      - 26 · 时间、正则与常用算法: stdlib/utilities.md
+      - 27 · 网络与 HTTP: stdlib/http.md
+      - 28 · 模板与嵌入资源: stdlib/templates.md
+      - 29 · SQL 与事务: stdlib/database.md
+  - 工程实践:
+      - 30 · 包、Modules 与工作区: engineering/modules.md
+      - 31 · 测试、模糊测试与基准: engineering/testing.md
+      - 32 · 性能、GC 与诊断: engineering/performance.md
+      - 33 · 配置、日志与服务安全: engineering/production.md
+      - 34 · 构建、容器与持续集成: engineering/build.md
+  - 进阶专题:
+      - 35 · 反射与 unsafe: advanced/reflection.md
+      - 36 · cgo、汇编与 WebAssembly: advanced/interop.md
+      - 37 · RPC 与分布式系统: advanced/distributed.md
+      - 38 · 架构、框架与生态: advanced/architecture.md
+  - 项目实战:
+      - 39 · 文本统计 CLI: projects/cli.md
+      - 40 · 任务管理 HTTP API: projects/task-api.md
+      - 41 · 可取消的并发流水线: projects/pipeline.md
+  - 附录与发布:
+      - 语言规范覆盖索引: appendix/spec-index.md
+      - 标准库导航: appendix/stdlib-index.md
+      - 版本差异与升级: appendix/versions.md
+      - 常见问题与速查: appendix/faq.md
+      - 练习参考答案: appendix/solutions.md
+      - GitHub Pages 发布: appendix/publishing.md
+      - 参考资料与版权: appendix/references.md

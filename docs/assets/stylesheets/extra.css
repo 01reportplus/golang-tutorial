@@ -1,0 +1,11 @@
+:root { --md-text-font: system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif; --md-code-font: 'Cascadia Code', Consolas, monospace; }
+.md-grid { max-width: 88rem; }
+.md-typeset { font-size: .83rem; line-height: 1.85; }
+.md-typeset h1 { color: var(--md-default-fg-color); font-weight: 750; }
+.md-typeset h2 { margin-top: 2.2em; font-weight: 650; }
+.md-typeset code { font-size: .87em; }
+.md-typeset table:not([class]) { font-size: .78rem; }
+.hero { padding: 1.5rem 1.7rem; border: 1px solid var(--md-default-fg-color--lightest); border-radius: .65rem; background: linear-gradient(120deg, #00968818, #00bcd408); }
+.hero strong { color: var(--md-primary-fg-color); }
+.md-typeset .admonition { font-size: .77rem; }
+@media print { .md-header, .md-tabs, .md-sidebar, .md-footer { display: none; } }

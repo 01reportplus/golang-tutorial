@@ -1,0 +1,2 @@
+Go makes composition practical.
+中文资源也能在编译时嵌入。

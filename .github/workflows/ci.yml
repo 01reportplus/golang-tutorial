@@ -1,0 +1,44 @@
+name: Quality checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  go:
+    strategy:
+      matrix:
+        go: ['1.26.x', '1.27.x']
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
+        with:
+          go-version: ${{ matrix.go }}
+          cache: false
+      - name: Format, vet, race and examples
+        run: |
+          test -z "$(gofmt -l cmd examples internal)"
+          go vet ./...
+          go test -race -count=1 ./...
+          go test ./examples/basics -run '^$' -fuzz FuzzReverse -fuzztime 5s
+      - name: Build commands
+        run: go build ./cmd/...
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+          cache: pip
+      - uses: actions/setup-go@v6
+        with:
+          go-version: '1.26.x'
+          cache: false
+      - run: python -m pip install -r requirements.txt
+      - run: python scripts/check_docs.py
+      - run: python scripts/check_snippets.py
+      - run: python -m mkdocs build --strict
+      - run: python scripts/check_site.py
