@@ -27,11 +27,17 @@ Windows 沙箱的临时文件重命名曾阻止覆盖率输出，改为正常用
 
 工作流已配置 Go 1.26/1.27 的 Linux 测试、race、短时 fuzz，以及文档和站点检查。Pages 只从仓库默认分支部署。
 
-本次工程保存在本地并已提交；远端因当前认证身份缺少目标仓库写权限而未能推送，因此远端 CI、Go 1.27 矩阵与 Pages 部署均尚未执行。后续获得仓库写权限，并在 Settings → Pages 将 Source 设为 GitHub Actions 后，再推送、检查 Actions 和实际网页。不能以工作流存在替代成功执行证据。
+2026-10-29 再次核对远端，提交 `9d6923c` 已在 main：
+
+- [Quality checks #1](https://github.com/01reportplus/golang-tutorial/actions/runs/40835733991)：成功。
+- [Deploy GitHub Pages #1](https://github.com/01reportplus/golang-tutorial/actions/runs/40835733950)：失败；文档检查、完整代码块与 Go 测试通过，`actions/configure-pages@v5` 查询 Pages 配置时返回 404，后续站点构建和部署被跳过。
+- Pages 公开 API 与目标网站当时均返回 404，尚无成功部署的站点。
+
+本地已补充 build job 的 `pages: read` 权限，并保留 deploy job 的写入权限。后续需将修复推送到 main，在 Settings → Pages 确认 Source 为 GitHub Actions，再检查新部署结果。若仅修改了 Pages 设置，可手动重新运行部署；已经失败的运行不会因设置变更自动恢复。
 
 ## 尚需专门环境的验证
 
-- 本机 CGO_ENABLED=0，未在本机执行 race；由 Linux CI 执行并检查结果。
+- 本机 CGO_ENABLED=0，未在本机执行 race；远端 Linux CI 已执行对应检查并通过。
 - SQL 章节需要选定数据库驱动和真实数据库，未执行数据库集成测试。
 - cgo、汇编、Wasm 与 gRPC 章节包含带前提的讲解和示意，未声称已完成跨平台集成验证。
 - Dockerfile 已提供，本机没有可用 Docker 命令，未执行容器构建和运行。

@@ -35,7 +35,9 @@ python3 -m venv .venv
 5. 打开 Actions → Deploy GitHub Pages，等待 build 和 deploy 成功。
 6. 从 deployment 输出的 page_url 打开站点，抽查文章、中文搜索、代码与手机布局。
 
-工作流使用 contents: read 构建，部署 job 单独获得 pages: write 与 id-token: write，并通过 github-pages environment 发布。默认使用 GITHUB_TOKEN，无需在代码里设置个人 token。
+构建 job 使用 contents: read 读取源码、pages: read 查询 Pages 配置；部署 job 单独获得 pages: write 与 id-token: write，并通过 github-pages environment 发布。默认使用 GITHUB_TOKEN，无需在代码里设置个人 token。
+
+如果第一次推送发生在启用 Pages 之前，configure-pages 可能以 404 失败，后续步骤会跳过。保存 Pages Source 后，进入失败的 Deploy GitHub Pages 运行记录，选择 Re-run all jobs；也可从该工作流页面用 Run workflow 在默认分支发起新部署。只修改 Pages 设置不会把已失败的运行自动变成成功。
 
 ## 默认分支与环境保护
 

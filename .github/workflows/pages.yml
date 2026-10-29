@@ -10,6 +10,9 @@ concurrency:
 jobs:
   build:
     if: github.ref_name == github.event.repository.default_branch
+    permissions:
+      contents: read
+      pages: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
